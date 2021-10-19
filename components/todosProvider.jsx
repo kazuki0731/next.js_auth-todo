@@ -1,4 +1,10 @@
-import { collection, query, getDocs, addDoc, orderBy } from "@firebase/firestore";
+import {
+  collection,
+  query,
+  getDocs,
+  addDoc,
+  orderBy,
+} from "@firebase/firestore";
 import { createContext, useEffect, useState } from "react";
 import { db } from "../src/firebase";
 
@@ -10,7 +16,6 @@ const TodosProvider = ({ children }) => {
     const data = [];
     try {
       const q = query(collection(db, "todos"), orderBy("createdAt", "desc"));
-      // orderBy("createdAt")
       const querySnapShot = await getDocs(q);
       querySnapShot.forEach((doc) => {
         data.push({

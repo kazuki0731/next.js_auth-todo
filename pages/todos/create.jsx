@@ -1,9 +1,7 @@
-import { async } from "@firebase/util";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import Header from "../../components/header";
 import { TodosContext } from "../../components/TodosProvider";
-import { db } from "../../src/firebase";
 import styles from "../../styles/Home.module.css";
 
 const Create = () => {
