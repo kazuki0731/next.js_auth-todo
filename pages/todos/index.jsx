@@ -8,7 +8,6 @@ import styles from "../../styles/Home.module.css";
 
 const Index = () => {
   const { todos } = useContext(TodosContext);
-  console.log(todos);
   const [isLogin, setIsLogin] = useState(false);
   const { currentUser, signout, isGetAuth } = useContext(AuthContext);
   const router = useRouter();
@@ -23,7 +22,7 @@ const Index = () => {
     }
   }, [isGetAuth]);
 
-  const clickSignOut = () => {
+  const clickSignout = () => {
     signout();
   };
 
@@ -35,7 +34,13 @@ const Index = () => {
         <ul>
           {todos.map((todo, index) => (
             <li key={index}>
-              <Link href="/todos/[id]" as={`/todos/${todo.title}`}>
+              <Link
+                href={{
+                  pathname: "/todos/[id]",
+                  query: { todo: todo.id },
+                }}
+                as={`/todos/${todo.title}`}
+              >
                 <a>
                   <h3>{todo.title}</h3>
                 </a>
@@ -44,7 +49,7 @@ const Index = () => {
             </li>
           ))}
         </ul>
-        <button onClick={clickSignOut}>ログアウト</button>
+        <button onClick={clickSignout}>ログアウト</button>
       </div>
     )
   );

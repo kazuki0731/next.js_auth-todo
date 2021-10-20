@@ -4,7 +4,9 @@ import { useRouter } from "next/router";
 import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "@firebase/auth";
 
 export const AuthContext = createContext();
@@ -29,6 +31,17 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const signup = async (email, password, name) => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const signout = async () => {
     await signOut(auth);
     router.push("/");
@@ -38,6 +51,7 @@ const AuthProvider = ({ children }) => {
     currentUser,
     setCurrentUser,
     login,
+    signup,
     signout,
     isGetAuth,
   };

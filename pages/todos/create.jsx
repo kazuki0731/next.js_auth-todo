@@ -1,15 +1,17 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import Header from "../../components/header";
 import { TodosContext } from "../../components/TodosProvider";
 import styles from "../../styles/Home.module.css";
 
 const Create = () => {
-  const { register, handleSubmit, reset } = useForm();
   const { addTodos } = useContext(TodosContext);
+  const [msg, setMsg] = useState("");
+  const { register, handleSubmit, reset } = useForm();
 
   const submitData = (data) => {
     addTodos(data);
+    setMsg("作成しました");
     reset();
   };
 
@@ -26,6 +28,7 @@ const Create = () => {
         <br />
         <input type="submit" value="送信" />
       </form>
+      {msg && <p>{msg}</p>}
     </div>
   );
 };
