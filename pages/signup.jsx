@@ -56,10 +56,18 @@ const Signup = () => {
         <br />
         <input type="submit" value="送信" />
       </form>
-      {msg && <p>{msg}</p>}
-      <Link href="/todos">
-        <a>Todo一覧へ</a>
-      </Link>
+      {msg === "登録できました" ? (
+        <div>
+          <p>{msg}</p>
+          <Link href="/todos">
+            <a>Todo一覧へ</a>
+          </Link>
+        </div>
+      ): (
+        <Link href="/signin">
+            <a>ログインへ</a>
+          </Link>
+      ) }
     </div>
   );
 };
