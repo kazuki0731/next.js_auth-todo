@@ -11,7 +11,7 @@ export default function Home() {
       <Link href={currentUser ? "/todos" : "/signin"}>
         <a>todoページへ</a>
       </Link>
-      <h1>ようこそ</h1>
+      <h1>Top</h1>
     </div>
   );
 }

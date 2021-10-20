@@ -2,26 +2,31 @@ import { useContext, useState } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../components/authProvider";
-import { async } from "@firebase/util";
+import { useRouter } from "next/router";
 
 const Signin = () => {
+  const { login } = useContext(AuthContext);
+  const router = useRouter();
   const { register, handleSubmit } = useForm();
   const [msg, setMsg] = useState("");
-  const { login } = useContext(AuthContext);
   const submitData = async (data) => {
     const error = await login(data.email, data.password);
-    switch (error) {
-      case "auth/wrong-password":
-        setMsg("パスワードが間違っています");
-        break;
-      case "auth/user-not-found":
-        setMsg("ユーザーが見つかりません");
-        break;
-      case "auth/too-many-requests":
-        setMsg("５回間違えたのでしばらく待ってください");
-        break;
-      default:
-        setMsg("通信に失敗しました");
+    if (error) {
+      switch (error) {
+        case "auth/wrong-password":
+          setMsg("パスワードが間違っています");
+          break;
+        case "auth/user-not-found":
+          setMsg("ユーザーが見つかりません");
+          break;
+        case "auth/too-many-requests":
+          setMsg("５回間違えたのでしばらく待ってください");
+          break;
+        default:
+          setMsg("通信に失敗しました");
+      }
+    } else {
+      router.push("/todos");
     }
   };
   return (

@@ -25,7 +25,6 @@ const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.push("/todos");
     } catch (e) {
       return e.code;
     }
