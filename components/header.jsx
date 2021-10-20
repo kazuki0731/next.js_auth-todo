@@ -6,7 +6,7 @@ const Header = ({ home }) => {
   const { currentUser } = useContext(AuthContext);
   return (
     <div>
-      <h2>ようこそ {currentUser.displayName} さん</h2>
+      {currentUser && <h2>ようこそ {currentUser.displayName} さん</h2>}
       {home ? (
         <Link href="/todos/create">
           <a>作成</a>

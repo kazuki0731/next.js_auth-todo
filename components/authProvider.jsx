@@ -27,7 +27,7 @@ const AuthProvider = ({ children }) => {
       await signInWithEmailAndPassword(auth, email, password);
       router.push("/todos");
     } catch (e) {
-      console.log(e);
+      return e.code;
     }
   };
 
@@ -38,7 +38,8 @@ const AuthProvider = ({ children }) => {
         displayName: name,
       });
     } catch (e) {
-      console.log(e);
+      console.log(e.code);
+      return e.code;
     }
   };
 

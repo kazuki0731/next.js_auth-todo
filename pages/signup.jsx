@@ -4,14 +4,32 @@ import { AuthContext } from "../components/authProvider";
 import Link from "next/link";
 
 const Signup = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const { signup } = useContext(AuthContext);
   const [msg, setMsg] = useState("");
 
   const submitData = async (data) => {
-    await signup(data.email, data.password, data.name);
-    setMsg("登録できました");
-    reset();
+    const error = await signup(data.email, data.password, data.name);
+    if (error) {
+      switch (error) {
+        case "auth/email-already-in-use":
+          setMsg("メールアドレスはすでに使われています");
+          break;
+        case "auth/weak-password":
+          setMsg("パスワードをもっと複雑にしてください");
+          break;
+        default:
+          setMsg("通信に失敗しました");
+      }
+    } else {
+      setMsg("登録できました");
+      reset();
+    }
   };
   return (
     <div>
@@ -27,19 +45,21 @@ const Signup = () => {
           type="password"
           id="password"
           required
-          {...register("password")}
+          {...register("password", {
+            minLength: {
+              value: 6,
+              message: "6文字以上にしてください",
+            },
+          })}
         />
+        {errors.password && <p>{errors.password.message}</p>}
         <br />
         <input type="submit" value="送信" />
       </form>
-      {msg && (
-        <div>
-          <p>{msg}</p>
-          <Link href="/todos">
-            <a>Todo一覧へ</a>
-          </Link>
-        </div>
-      )}
+      {msg && <p>{msg}</p>}
+      <Link href="/todos">
+        <a>Todo一覧へ</a>
+      </Link>
     </div>
   );
 };
