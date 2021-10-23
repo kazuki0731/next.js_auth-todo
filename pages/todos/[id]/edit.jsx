@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { TodosContext } from "../../../components/TodosProvider";
 import Header from "../../../components/header";
-import { FormControl, FormLabel } from "@chakra-ui/form-control";
+import { FormControl } from "@chakra-ui/form-control";
 import TodosContainer from "../../../components/todosContainer";
 import TitleText from "../../../components/titleText";
 import { Input } from "@chakra-ui/input";
