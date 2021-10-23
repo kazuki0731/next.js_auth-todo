@@ -1,5 +1,12 @@
 const obj = {
-  name: "kawabata"
-}
+  name: { f: "a", l: "b" },
+  age: 31,
+};
 
-const name = obj.name;
+const newObj = {
+  ...obj.name,
+};
+
+newObj.age = obj.age
+
+console.log(newObj);

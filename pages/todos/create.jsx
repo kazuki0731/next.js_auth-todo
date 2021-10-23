@@ -1,8 +1,13 @@
+import { Input, FormControl, Textarea, Button } from "@chakra-ui/react";
+
+import { VStack } from "@chakra-ui/layout";
+import Head from "next/head";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import Header from "../../components/header";
 import { TodosContext } from "../../components/TodosProvider";
-import styles from "../../styles/Home.module.css";
+import TodosContainer from "../../components/todosContainer";
+import TitleText from "../../components/titleText";
 
 const Create = () => {
   const { addTodos } = useContext(TodosContext);
@@ -16,19 +21,40 @@ const Create = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div>
+      <Head>
+        <title>作成</title>
+      </Head>
       <Header />
-      <h1>Create</h1>
-      <form onSubmit={handleSubmit(submitData)}>
-        <label htmlFor="title">タイトル</label>
-        <input type="text" id="title" required {...register("title")} />
-        <br />
-        <label htmlFor="text">内容</label>
-        <textarea id="text" rows="8" required {...register("text")}></textarea>
-        <br />
-        <input type="submit" value="送信" />
-      </form>
-      {msg && <p>{msg}</p>}
+      <TitleText>Create</TitleText>
+      <TodosContainer>
+        <form onSubmit={handleSubmit(submitData)}>
+          <FormControl>
+            <VStack justify="center" spacing={7}>
+              <Input
+                id="title"
+                bg="white"
+                w="70%"
+                variant="outline"
+                placeholder="タイトルを入力してください"
+                required
+                {...register("title")}
+              />
+              <Textarea
+                id="text"
+                bg="white"
+                w="70%"
+                h="300px"
+                placeholder="本文を入力してください"
+                required
+                {...register("text")}
+              />
+              <Button type="submit">作成</Button>
+            </VStack>
+          </FormControl>
+        </form>
+        {msg && <p>{msg}</p>}
+      </TodosContainer>
     </div>
   );
 };

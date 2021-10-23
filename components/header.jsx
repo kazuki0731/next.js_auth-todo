@@ -1,25 +1,41 @@
-import Link from "next/link";
+import { Box, Flex, Button, Text } from "@chakra-ui/react";
 import { useContext } from "react";
 import { AuthContext } from "./authProvider";
+import PageLink from "./pageLink";
 
-const Header = ({ home }) => {
-  const { currentUser } = useContext(AuthContext);
+const Header = ({ home, children }) => {
+  const { currentUser, signout } = useContext(AuthContext);
+
+  const clickSignout = () => {
+    signout();
+  };
+
   return (
     <div>
-      {currentUser && <h2>ようこそ {currentUser.displayName} さん</h2>}
-      {home ? (
-        <Link href="/todos/create">
-          <a>作成</a>
-        </Link>
-      ) : (
-        <Link href="/todos">
-          <a>一覧</a>
-        </Link>
-      )}
-      <br />
-      <Link href="/mypage">
-        <a>マイページ</a>
-      </Link>
+      <Box bg="tomato" p={1}>
+        <Flex justify="space-between" alignItems="center" w="95%" m="0 auto">
+          <Box>
+            <PageLink mr={8} href="/todos">
+              一覧
+            </PageLink>
+            <PageLink mr={8} href="/todos/create">
+              作成
+            </PageLink>
+            <PageLink href="/mypage">マイページ</PageLink>
+          </Box>
+          {children}
+          {currentUser && (
+            <Box>
+              <Text fontWeight="semibold" display="inline" mr={6}>
+                {currentUser.displayName} さん
+              </Text>
+              <Button mb={1} onClick={clickSignout}>
+                ログアウト
+              </Button>
+            </Box>
+          )}
+        </Flex>
+      </Box>
     </div>
   );
 };

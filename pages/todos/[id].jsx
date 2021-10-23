@@ -1,11 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
-import Link from "next/link";
+import Head from "next/head";
 import Header from "../../components/header";
 import { useRouter } from "next/router";
 import { TodosContext } from "../../components/TodosProvider";
+import TitleText from "../../components/titleText";
+import TodosContainer from "../../components/todosContainer";
+import { ListItem, UnorderedList, Text, HStack, Box } from "@chakra-ui/layout";
+import { Button } from "@chakra-ui/button";
+import PageLink from "../../components/pageLink";
 
 const Todo = () => {
-  const { getTodo } = useContext(TodosContext);
+  const { getTodo, deleteTodo } = useContext(TodosContext);
+  const [msg, setMsg] = useState("");
   const [data, setData] = useState({});
   const router = useRouter();
   const todoId = router.query.todo;
@@ -14,6 +20,10 @@ const Todo = () => {
     const res = await getTodo(todoId);
     setData(res);
   };
+  const clickDelete = (id) => {
+    deleteTodo(id);
+    setMsg("削除しました");
+  };
 
   useEffect(() => {
     getTodoDetail();
@@ -21,31 +31,50 @@ const Todo = () => {
 
   return (
     <div>
+      <Head>
+        <title>{data.title}</title>
+      </Head>
       <Header />
-      <h1>Todos</h1>
-      <ul>
-        <li>
-          タイトル: <strong>{data.title}</strong>
-        </li>
-        <li>
-          内容: <strong>{data.text}</strong>
-        </li>
-        <li>
-          進捗: <strong>{data.status}</strong>
-        </li>
-      </ul>
+      <TitleText>詳細</TitleText>
 
-      <Link
-        href={{
-          pathname: "/todos/[id]/edit",
-          query: { todo: todoId },
-        }}
-        as={`/todos/${router.query.id}/edit`}
-        passHref
-      >
-        <button>編集</button>
-      </Link>
-      <button>削除</button>
+      {msg ? (
+        <p>{msg}</p>
+      ) : (
+        <TodosContainer>
+          <UnorderedList m={0} listStyleType="none">
+            <hr />
+            <ListItem>
+              タイトル: <Text>{data.title}</Text>
+            </ListItem>
+            <hr />
+            <ListItem>
+              内容: <Text>{data.text}</Text>
+            </ListItem>
+            <hr />
+            <ListItem>
+              進捗:
+              <Text color={data.status === "完了" ? "green" : "red"}>
+                {data.status}
+              </Text>
+            </ListItem>
+            <hr />
+          </UnorderedList>
+          <HStack justify="center" mt={2}>
+            <PageLink
+              href={{
+                pathname: "/todos/[id]/edit",
+                query: { todo: todoId },
+              }}
+              url={`/todos/${router.query.id}/edit`}
+            >
+              <Button color="blackAlpha.800">編集</Button>
+            </PageLink>
+            <Box>
+              <Button onClick={() => clickDelete(data.id)}>削除</Button>
+            </Box>
+          </HStack>
+        </TodosContainer>
+      )}
     </div>
   );
 };

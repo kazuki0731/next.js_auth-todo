@@ -7,6 +7,7 @@ import {
   getDoc,
   doc,
   updateDoc,
+  deleteDoc,
 } from "@firebase/firestore";
 import { createContext, useEffect, useState } from "react";
 import { db } from "../src/firebase";
@@ -46,7 +47,11 @@ const TodosProvider = ({ children }) => {
 
   const getTodo = async (id) => {
     const docSnap = await getDoc(doc(db, "todos", id));
-    return docSnap.data();
+
+    return {
+      ...docSnap.data(),
+      id: docSnap.id,
+    };
   };
 
   const changeTodo = async ({ title, text, status }, id) => {
@@ -55,6 +60,11 @@ const TodosProvider = ({ children }) => {
       text,
       status,
     });
+    getAllTodos();
+  };
+
+  const deleteTodo = async (id) => {
+    await deleteDoc(doc(db, "todos", id));
     getAllTodos();
   };
 
@@ -68,6 +78,7 @@ const TodosProvider = ({ children }) => {
     addTodos,
     getTodo,
     changeTodo,
+    deleteTodo,
   };
 
   return (

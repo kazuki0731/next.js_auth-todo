@@ -1,17 +1,24 @@
-import Link from "next/link";
+import PageLink from "../components/pageLink";
 import { useContext } from "react";
 import { AuthContext } from "../components/authProvider";
-
-import styles from "../styles/Home.module.css";
+import Head from "next/head";
+import { Box, Heading } from "@chakra-ui/layout";
 
 export default function Home() {
   const { currentUser } = useContext(AuthContext);
   return (
-    <div className={styles.container}>
-      <Link href={currentUser ? "/todos" : "/signin"}>
-        <a>todoページへ</a>
-      </Link>
-      <h1>Top</h1>
+    <div>
+      <Head>
+        <title>Todoリスト</title>
+      </Head>
+      <Box bg="tomato" p="2">
+        <PageLink href={currentUser ? "/todos" : "/signin"} >
+          Todoページへ
+        </PageLink>
+      </Box>
+      <Heading as="h2" size="3xl" mt={5}>
+        Topページ
+      </Heading>
     </div>
   );
 }
