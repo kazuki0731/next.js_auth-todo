@@ -20,7 +20,7 @@ const Mypage = () => {
         setIsLogin(true);
       }
     }
-  }, [isGetAuth]);
+  }, [isGetAuth, currentUser, router]);
 
   return (
     <>

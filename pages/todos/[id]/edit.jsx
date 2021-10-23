@@ -21,19 +21,18 @@ const Todo = () => {
   const todoId = router.query.todo;
   const { register, handleSubmit, reset } = useForm();
 
-  const getTodoDetail = async () => {
-    const res = await getTodo(todoId);
-    reset(res);
-  };
-
   const changeData = async (data) => {
     await changeTodo(data, todoId);
     setMsg("変更しました");
   };
 
   useEffect(() => {
+    const getTodoDetail = async () => {
+      const res = await getTodo(todoId);
+      reset(res);
+    };
     getTodoDetail();
-  }, []);
+  }, [getTodo, todoId, reset]);
 
   return (
     <div>

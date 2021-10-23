@@ -23,7 +23,7 @@ const Index = () => {
         setIsLogin(true);
       }
     }
-  }, [isGetAuth]);
+  }, [isGetAuth, currentUser, router]);
 
   return (
     isLogin && (

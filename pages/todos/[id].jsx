@@ -16,18 +16,18 @@ const Todo = () => {
   const router = useRouter();
   const todoId = router.query.todo;
 
-  const getTodoDetail = async () => {
-    const res = await getTodo(todoId);
-    setData(res);
-  };
   const clickDelete = (id) => {
     deleteTodo(id);
     setMsg("削除しました");
   };
 
   useEffect(() => {
+    const getTodoDetail = async () => {
+      const res = await getTodo(todoId);
+      setData(res);
+    };
     getTodoDetail();
-  }, []);
+  }, [todoId, getTodo]);
 
   return (
     <div>

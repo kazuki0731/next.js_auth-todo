@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "./authProvider";
 import PageLink from "./pageLink";
 
-const Header = ({ home, children }) => {
+const Header = ({ children }) => {
   const { currentUser, signout } = useContext(AuthContext);
 
   const clickSignout = () => {
