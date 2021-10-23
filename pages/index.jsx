@@ -5,14 +5,16 @@ import Head from "next/head";
 import { Box, Heading } from "@chakra-ui/layout";
 
 export default function Home() {
-  // const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   return (
     <div>
       <Head>
         <title>Todoリスト</title>
       </Head>
       <Box bg="tomato" p="2">
-        <PageLink href="/todos">Todoページへ</PageLink>
+        <PageLink href={currentUser ? "/todos" : "/signin"}>
+          Todoページへ
+        </PageLink>
       </Box>
       <Heading as="h2" size="3xl" mt={5}>
         Topページ
