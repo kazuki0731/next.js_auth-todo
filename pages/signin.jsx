@@ -42,12 +42,12 @@ const Signin = () => {
         <form onSubmit={handleSubmit(submitData)}>
           <VStack w="70%" m="0 auto" spacing={6}>
             <FormControl id="email">
-              <FormLabel>ユーザー名:</FormLabel>
+              <FormLabel>メールアドレス:</FormLabel>
               <Input
                 type="email"
                 {...register("email")}
                 bg="white"
-                placeholder="ユーザー名を入力"
+                placeholder="メールアドレスを入力"
                 required
               />
             </FormControl>
