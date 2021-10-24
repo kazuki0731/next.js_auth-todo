@@ -7,7 +7,7 @@ import Header from "../../components/header";
 import PageLink from "../../components/pageLink";
 import TitleText from "../../components/titleText";
 import TodosContainer from "../../components/todosContainer";
-import { TodosContext } from "../../components/TodosProvider";
+import { TodosContext } from "../../components/todosProvider";
 
 const Index = () => {
   const { todos } = useContext(TodosContext);

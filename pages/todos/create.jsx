@@ -5,7 +5,7 @@ import Head from "next/head";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import Header from "../../components/header";
-import { TodosContext } from "../../components/TodosProvider";
+import { TodosContext } from "../../components/todosProvider";
 import TodosContainer from "../../components/todosContainer";
 import TitleText from "../../components/titleText";
 

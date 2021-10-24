@@ -2,7 +2,7 @@ import Head from "next/head";
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { TodosContext } from "../../../components/TodosProvider";
+import { TodosContext } from "../../../components/todosProvider";
 import Header from "../../../components/header";
 import { FormControl } from "@chakra-ui/form-control";
 import TodosContainer from "../../../components/todosContainer";

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Head from "next/head";
 import Header from "../../components/header";
 import { useRouter } from "next/router";
-import { TodosContext } from "../../components/TodosProvider";
+import { TodosContext } from "../../components/todosProvider";
 import TitleText from "../../components/titleText";
 import TodosContainer from "../../components/todosContainer";
 import { ListItem, UnorderedList, Text, HStack, Box } from "@chakra-ui/layout";
