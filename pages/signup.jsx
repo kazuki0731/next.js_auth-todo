@@ -25,7 +25,7 @@ const Signup = () => {
           setMsg("メールアドレスはすでに使われています");
           break;
         case "auth/weak-password":
-          setMsg("パスワードをもっと複雑にしてください");
+          setMsg("パスワードを複雑にしてください");
           break;
         default:
           setMsg("通信に失敗しました");
@@ -47,7 +47,7 @@ const Signup = () => {
                 type="name"
                 {...register("name")}
                 bg="white"
-                placeholder="ユーザー名を入力してください"
+                placeholder="ユーザー名を入力"
                 required
               />
             </FormControl>
@@ -57,7 +57,7 @@ const Signup = () => {
                 type="email"
                 {...register("email")}
                 bg="white"
-                placeholder="メールアドレスを入力してください"
+                placeholder="メールアドレスを入力"
                 required
               />
             </FormControl>

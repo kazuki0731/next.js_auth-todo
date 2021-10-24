@@ -35,7 +35,7 @@ const Create = () => {
                 id="title"
                 bg="white"
                 variant="outline"
-                placeholder="タイトルを入力してください"
+                placeholder="タイトルを入力"
                 required
                 {...register("title")}
               />
@@ -45,7 +45,7 @@ const Create = () => {
                 id="text"
                 bg="white"
                 h="300px"
-                placeholder="本文を入力してください"
+                placeholder="本文を入力"
                 required
                 {...register("text")}
               />

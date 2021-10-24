@@ -57,7 +57,7 @@ const Todo = () => {
                 <option value="完了">完了</option>
               </Select>
             </FormControl>
-            <Button type="submit">変更を保存する</Button>
+            <Button type="submit">変更する</Button>
           </VStack>
         </form>
         {msg && <Text mt={1}>{msg}</Text>}

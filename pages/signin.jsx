@@ -47,7 +47,7 @@ const Signin = () => {
                 type="email"
                 {...register("email")}
                 bg="white"
-                placeholder="ユーザー名を入力してください"
+                placeholder="ユーザー名を入力"
                 required
               />
             </FormControl>
@@ -57,7 +57,7 @@ const Signin = () => {
                 type="password"
                 {...register("password")}
                 bg="white"
-                placeholder="パスワードを入力してください"
+                placeholder="パスワードを入力"
                 required
               />
             </FormControl>
