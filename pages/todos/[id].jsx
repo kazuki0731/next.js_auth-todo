@@ -30,7 +30,7 @@ const Todo = () => {
   }, [todoId, getTodo]);
 
   return (
-    <div>
+    <>
       <Head>
         <title>{data.title}</title>
       </Head>
@@ -75,7 +75,7 @@ const Todo = () => {
           </HStack>
         </TodosContainer>
       )}
-    </div>
+    </>
   );
 };
 

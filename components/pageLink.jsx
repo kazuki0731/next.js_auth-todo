@@ -7,6 +7,7 @@ const PageLink = (props) => {
     <NextLink href={props.href} as={props.url}>
       <Link 
         color="whiteAlpha.800"
+        fontWeight="semibold"
         {...props}
         onClick={() => document.activeElement.blur()}
       />

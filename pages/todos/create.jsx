@@ -21,7 +21,7 @@ const Create = () => {
   };
 
   return (
-    <div>
+    <>
       <Head>
         <title>作成</title>
       </Head>
@@ -29,33 +29,33 @@ const Create = () => {
       <TitleText>Create</TitleText>
       <TodosContainer>
         <form onSubmit={handleSubmit(submitData)}>
-          <FormControl>
-            <VStack justify="center" spacing={7}>
+          <VStack w="70%" m="0 auto" spacing={7}>
+            <FormControl>
               <Input
                 id="title"
                 bg="white"
-                w="70%"
                 variant="outline"
                 placeholder="タイトルを入力してください"
                 required
                 {...register("title")}
               />
+            </FormControl>
+            <FormControl>
               <Textarea
                 id="text"
                 bg="white"
-                w="70%"
                 h="300px"
                 placeholder="本文を入力してください"
                 required
                 {...register("text")}
               />
-              <Button type="submit">作成</Button>
-            </VStack>
-          </FormControl>
+            </FormControl>
+            <Button type="submit">作成</Button>
+          </VStack>
         </form>
         {msg && <p>{msg}</p>}
       </TodosContainer>
-    </div>
+    </>
   );
 };
 

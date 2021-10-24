@@ -1,7 +1,11 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../components/authProvider";
-import Link from "next/link";
+import TitleText from "../components/titleText";
+import TodosContainer from "../components/todosContainer";
+import { Input, FormControl, FormLabel, Button } from "@chakra-ui/react";
+import { VStack, Text, Box } from "@chakra-ui/layout";
+import PageLink from "../components/pageLink";
 
 const Signup = () => {
   const {
@@ -32,43 +36,65 @@ const Signup = () => {
     }
   };
   return (
-    <div>
-      <h1>登録フォーム</h1>
-      <form onSubmit={handleSubmit(submitData)}>
-        <label htmlFor="name">ユーザー名</label>
-        <input type="text" id="name" required {...register("name")} />
-        <label htmlFor="email">メールアドレス</label>
-        <input type="email" id="email" required {...register("email")} />
-        <br />
-        <label htmlFor="password">パスワード</label>
-        <input
-          type="password"
-          id="password"
-          required
-          {...register("password", {
-            minLength: {
-              value: 6,
-              message: "6文字以上にしてください",
-            },
-          })}
-        />
-        {errors.password && <p>{errors.password.message}</p>}
-        <br />
-        <input type="submit" value="送信" />
-      </form>
-      {msg === "登録できました" ? (
-        <div>
-          <p>{msg}</p>
-          <Link href="/todos">
-            <a>Todo一覧へ</a>
-          </Link>
-        </div>
-      ): (
-        <Link href="/signin">
-            <a>ログインへ</a>
-          </Link>
-      ) }
-    </div>
+    <>
+      <TitleText>新規登録</TitleText>
+      <TodosContainer>
+        <form onSubmit={handleSubmit(submitData)}>
+          <VStack w="70%" m="0 auto" spacing={6}>
+            <FormControl id="name">
+              <FormLabel>ユーザー名:</FormLabel>
+              <Input
+                type="name"
+                {...register("name")}
+                bg="white"
+                placeholder="ユーザー名を入力してください"
+                required
+              />
+            </FormControl>
+            <FormControl id="email">
+              <FormLabel>メールアドレス:</FormLabel>
+              <Input
+                type="email"
+                {...register("email")}
+                bg="white"
+                placeholder="メールアドレスを入力してください"
+                required
+              />
+            </FormControl>
+            <FormControl id="password">
+              <FormLabel>パスワード:</FormLabel>
+              <Input
+                type="password"
+                {...register("password", {
+                  minLength: {
+                    value: 6,
+                    message: "6文字以上にしてください",
+                  },
+                })}
+                bg="white"
+                placeholder="パスワードを入力してください"
+                required
+              />
+            </FormControl>
+            {errors.password && <Text>{errors.password.message}</Text>}
+            <Button type="submit">登録</Button>
+          </VStack>
+        </form>
+        <Box mt={5}>
+          {msg === "登録できました" ? (
+            <>
+              <Text>{msg}</Text>
+              <PageLink href="/todos">Todo一覧へ</PageLink>
+            </>
+          ) : (
+            <>
+              <Text color="red.400">{msg}</Text>
+              <PageLink href="/signin">ログインへ</PageLink>
+            </>
+          )}
+        </Box>
+      </TodosContainer>
+    </>
   );
 };
 

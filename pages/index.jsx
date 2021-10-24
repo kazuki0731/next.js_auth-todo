@@ -7,7 +7,7 @@ import { Box, Heading } from "@chakra-ui/layout";
 export default function Home() {
   const { currentUser } = useContext(AuthContext);
   return (
-    <div>
+    <>
       <Head>
         <title>Todoリスト</title>
       </Head>
@@ -19,6 +19,6 @@ export default function Home() {
       <Heading as="h2" size="3xl" mt={5}>
         Topページ
       </Heading>
-    </div>
+    </>
   );
 }

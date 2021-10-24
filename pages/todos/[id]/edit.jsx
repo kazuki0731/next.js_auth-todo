@@ -35,7 +35,7 @@ const Todo = () => {
   }, [getTodo, todoId, reset]);
 
   return (
-    <div>
+    <>
       <Head>
         <title>編集</title>
       </Head>
@@ -43,35 +43,26 @@ const Todo = () => {
       <TitleText>Edit</TitleText>
       <TodosContainer>
         <form onSubmit={handleSubmit(changeData)}>
-          <FormControl>
-            <VStack>
-              <Input
-                id="title"
-                bg="white"
-                w="70%"
-                required
-                {...register("title")}
-              />
-              <Textarea
-                id="text"
-                bg="white"
-                w="70%"
-                h="300px"
-                required
-                {...register("text")}
-              />
-              <Select bg="white" w="50%" {...register("status")}>
+          <VStack w="70%" m="0 auto" justifyContent="center">
+            <FormControl id="title">
+              <Input bg="white" required {...register("title")} />
+            </FormControl>
+            <FormControl id="text">
+              <Textarea bg="white" h="300px" required {...register("text")} />
+            </FormControl>
+            <FormControl w="60%">
+              <Select bg="white" {...register("status")}>
                 <option value="未着手">未着手</option>
                 <option value="着手">着手</option>
                 <option value="完了">完了</option>
               </Select>
-              <Button type="submit">変更を保存する</Button>
-            </VStack>
-          </FormControl>
+            </FormControl>
+            <Button type="submit">変更を保存する</Button>
+          </VStack>
         </form>
         {msg && <Text mt={1}>{msg}</Text>}
       </TodosContainer>
-    </div>
+    </>
   );
 };
 

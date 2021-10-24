@@ -1,8 +1,14 @@
 import { useContext, useState } from "react";
-import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../components/authProvider";
 import { useRouter } from "next/router";
+import TitleText from "../components/titleText";
+import TodosContainer from "../components/todosContainer";
+import { VStack, Text, Box } from "@chakra-ui/layout";
+import { FormControl, FormLabel } from "@chakra-ui/form-control";
+import { Input } from "@chakra-ui/input";
+import { Button } from "@chakra-ui/button";
+import PageLink from "../components/pageLink";
 
 const Signin = () => {
   const { login } = useContext(AuthContext);
@@ -30,27 +36,40 @@ const Signin = () => {
     }
   };
   return (
-    <div>
-      <h1>ログインフォーム</h1>
-      <form onSubmit={handleSubmit(submitData)}>
-        <label htmlFor="email">メールアドレス</label>
-        <input type="text" id="email" required {...register("email")} />
-        <br />
-        <label htmlFor="password">パスワード</label>
-        <input
-          type="password"
-          id="password"
-          required
-          {...register("password")}
-        />
-        <br />
-        <input type="submit" value="送信" />
-      </form>
-      <p>{msg && <p>{msg}</p>}</p>
-      <Link href="/signup">
-        <a>登録する</a>
-      </Link>
-    </div>
+    <>
+      <TitleText>ログイン</TitleText>
+      <TodosContainer>
+        <form onSubmit={handleSubmit(submitData)}>
+          <VStack w="70%" m="0 auto" spacing={6}>
+            <FormControl id="email">
+              <FormLabel>ユーザー名:</FormLabel>
+              <Input
+                type="email"
+                {...register("email")}
+                bg="white"
+                placeholder="ユーザー名を入力してください"
+                required
+              />
+            </FormControl>
+            <FormControl id="password">
+              <FormLabel>パスワード:</FormLabel>
+              <Input
+                type="password"
+                {...register("password")}
+                bg="white"
+                placeholder="パスワードを入力してください"
+                required
+              />
+            </FormControl>
+            <Button type="submit">ログイン</Button>
+          </VStack>
+        </form>
+        <Box mt={3}>
+          <PageLink href="/signup">新規登録する</PageLink>
+          {msg && <Text>{msg}</Text>}
+        </Box>
+      </TodosContainer>
+    </>
   );
 };
 
