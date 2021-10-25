@@ -2,12 +2,12 @@ import { Box, Flex, ListItem, Text, UnorderedList } from "@chakra-ui/layout";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../components/authProvider";
+import { AuthContext } from "../../contexts/authProvider";
 import Header from "../../components/header";
 import PageLink from "../../components/pageLink";
 import TitleText from "../../components/titleText";
 import TodosContainer from "../../components/todosContainer";
-import { TodosContext } from "../../components/todosProvider";
+import { TodosContext } from "../../contexts/todosProvider";
 
 const Index = () => {
   const { todos } = useContext(TodosContext);

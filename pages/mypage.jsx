@@ -2,7 +2,7 @@ import { Button } from "@chakra-ui/button";
 import { ListItem, UnorderedList } from "@chakra-ui/layout";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../components/authProvider";
+import { AuthContext } from "../contexts/authProvider";
 import Header from "../components/header";
 import TitleText from "../components/titleText";
 import TodosContainer from "../components/todosContainer";
@@ -25,7 +25,7 @@ const Mypage = () => {
   return (
     <>
       <Header />
-      {isLogin && (
+      {isLogin && currentUser && (
         <>
           <TitleText>マイページ</TitleText>
           <TodosContainer>

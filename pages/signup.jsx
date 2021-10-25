@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "../components/authProvider";
+import { AuthContext } from "../contexts/authProvider";
 import TitleText from "../components/titleText";
 import TodosContainer from "../components/todosContainer";
 import { Input, FormControl, FormLabel, Button } from "@chakra-ui/react";

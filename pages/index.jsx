@@ -1,6 +1,6 @@
 import PageLink from "../components/pageLink";
 import { useContext } from "react";
-import { AuthContext } from "../components/authProvider";
+import { AuthContext } from "../contexts/authProvider";
 import Head from "next/head";
 import { Box, Heading } from "@chakra-ui/layout";
 

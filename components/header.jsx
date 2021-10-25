@@ -1,6 +1,6 @@
 import { Box, Flex, Button, Text } from "@chakra-ui/react";
 import { useContext } from "react";
-import { AuthContext } from "./authProvider";
+import { AuthContext } from "../contexts/authProvider";
 import PageLink from "./pageLink";
 
 const Header = ({ children }) => {

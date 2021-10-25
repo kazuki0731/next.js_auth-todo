@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "../components/authProvider";
+import { AuthContext } from "../contexts/authProvider";
 import { useRouter } from "next/router";
 import TitleText from "../components/titleText";
 import TodosContainer from "../components/todosContainer";

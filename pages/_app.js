@@ -1,6 +1,6 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import AuthProvider from "../components/authProvider";
-import TodosProvider from "../components/todosProvider";
+import AuthProvider from "../contexts/authProvider";
+import TodosProvider from "../contexts/todosProvider";
 import { theme } from "../styles/theme";
 
 function MyApp({ Component, pageProps }) {
