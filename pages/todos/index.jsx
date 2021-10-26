@@ -10,11 +10,12 @@ import TodosContainer from "../../components/todosContainer";
 import { TodosContext } from "../../contexts/todosProvider";
 
 const Index = () => {
-  const { todos } = useContext(TodosContext);
+  const { todos, getAllTodos } = useContext(TodosContext);
   const [isLogin, setIsLogin] = useState(false);
   const { currentUser, isGetAuth } = useContext(AuthContext);
   const router = useRouter();
   useEffect(() => {
+    getAllTodos();
     if (isGetAuth) {
       if (!currentUser) {
         router.push("/signin");
@@ -23,7 +24,7 @@ const Index = () => {
         setIsLogin(true);
       }
     }
-  }, [isGetAuth, currentUser, router]);
+  }, [getAllTodos, isGetAuth, currentUser, router]);
 
   return (
     isLogin && (

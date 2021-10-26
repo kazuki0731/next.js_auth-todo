@@ -68,12 +68,9 @@ const TodosProvider = ({ children }) => {
     getAllTodos();
   };
 
-  useEffect(() => {
-    getAllTodos();
-  }, []);
-
   const value = {
     todos,
+    getAllTodos,
     setTodos,
     addTodos,
     getTodo,

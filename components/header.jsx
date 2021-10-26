@@ -1,13 +1,16 @@
 import { Box, Flex, Button, Text } from "@chakra-ui/react";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/authProvider";
+import { TodosContext } from "../contexts/todosProvider";
 import PageLink from "./pageLink";
 
 const Header = ({ children }) => {
   const { currentUser, signout } = useContext(AuthContext);
+  const { setTodos } = useContext(TodosContext);
 
   const clickSignout = () => {
     signout();
+    setTodos([]);
   };
 
   return (
