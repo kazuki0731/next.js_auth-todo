@@ -4,7 +4,7 @@ import TodosProvider from "../contexts/todosProvider";
 import { theme } from "../styles/theme";
 import { AppProps } from "next/app";
 
-const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ChakraProvider theme={theme}>
       <AuthProvider>
