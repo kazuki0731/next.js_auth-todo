@@ -17,6 +17,8 @@ import { Link } from "@chakra-ui/react";
 // }
 
 // const PageLink: VFC<Props> = (props) => {
+
+// 上記ではエラーになったのでコメントアウトしています
   
 const PageLink = (props) => {
   const clickLink = () => {
