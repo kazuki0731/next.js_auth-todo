@@ -1,20 +1,25 @@
 import { Input, FormControl, Textarea, Button } from "@chakra-ui/react";
 
-import { VStack } from "@chakra-ui/layout";
+import { VStack, Text } from "@chakra-ui/layout";
 import Head from "next/head";
-import { useContext, useState } from "react";
+import { useContext, useState, VFC } from "react";
 import { useForm } from "react-hook-form";
 import Header from "../../components/header";
 import { TodosContext } from "../../contexts/todosProvider";
 import TodosContainer from "../../components/todosContainer";
 import TitleText from "../../components/titleText";
 
-const Create = () => {
+interface FormData {
+  title: string;
+  text: string;
+}
+
+const Create: VFC = () => {
   const { addTodos } = useContext(TodosContext);
   const [msg, setMsg] = useState("");
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset } = useForm<FormData>();
 
-  const submitData = (data) => {
+  const submitData = (data: FormData) => {
     addTodos(data);
     setMsg("作成しました");
     reset();
@@ -53,7 +58,7 @@ const Create = () => {
             <Button type="submit">作成</Button>
           </VStack>
         </form>
-        {msg && <p>{msg}</p>}
+        {msg && <Text>{msg}</Text>}
       </TodosContainer>
     </>
   );

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, VFC } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../contexts/authProvider";
 import { useRouter } from "next/router";
@@ -9,13 +9,19 @@ import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
 import { Button } from "@chakra-ui/button";
 import PageLink from "../components/pageLink";
+import { Props } from "../models";
 
-const Signin = () => {
+interface FormData {
+  email: string;
+  password: string;
+}
+
+const Signin: VFC<Props> = () => {
   const { login } = useContext(AuthContext);
   const router = useRouter();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<FormData>();
   const [msg, setMsg] = useState("");
-  const submitData = async (data) => {
+  const submitData = async (data: FormData) => {
     const error = await login(data.email, data.password);
     if (error) {
       switch (error) {

@@ -1,7 +1,8 @@
+/* eslint-disable */
 import { Box, Flex, ListItem, Text, UnorderedList } from "@chakra-ui/layout";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, VFC } from "react";
 import { AuthContext } from "../../contexts/authProvider";
 import Header from "../../components/header";
 import PageLink from "../../components/pageLink";
@@ -9,7 +10,13 @@ import TitleText from "../../components/titleText";
 import TodosContainer from "../../components/todosContainer";
 import { TodosContext } from "../../contexts/todosProvider";
 
-const Index = () => {
+interface Todo {
+  id: string;
+  title: string;
+  status: string;
+}
+
+const Index: VFC = () => {
   const { todos, getAllTodos } = useContext(TodosContext);
   const [isLogin, setIsLogin] = useState(false);
   const { currentUser, isGetAuth } = useContext(AuthContext);
@@ -24,7 +31,7 @@ const Index = () => {
         setIsLogin(true);
       }
     }
-  }, [getAllTodos, isGetAuth, currentUser, router]);
+  }, [isGetAuth, currentUser, router]);
 
   return (
     isLogin && (
@@ -37,7 +44,7 @@ const Index = () => {
         <TodosContainer>
           <UnorderedList m="0 auto">
             <hr />
-            {todos.map((todo) => (
+            {todos.map((todo: Todo) => (
               <ListItem listStyleType="none" key={todo.id}>
                 <Flex>
                   <Box m="0 auto">

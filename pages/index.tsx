@@ -1,10 +1,11 @@
 import PageLink from "../components/pageLink";
-import { useContext } from "react";
+import { useContext, VFC } from "react";
 import { AuthContext } from "../contexts/authProvider";
 import Head from "next/head";
 import { Box, Heading } from "@chakra-ui/layout";
+import { Link } from "@chakra-ui/react";
 
-export default function Home() {
+const Home: VFC = () => {
   const { currentUser } = useContext(AuthContext);
   return (
     <>
@@ -21,4 +22,6 @@ export default function Home() {
       </Heading>
     </>
   );
-}
+};
+
+export default Home;

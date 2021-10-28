@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, VFC } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { TodosContext } from "../../../contexts/todosProvider";
@@ -12,16 +12,23 @@ import { Textarea } from "@chakra-ui/textarea";
 import { Select } from "@chakra-ui/select";
 import { Button } from "@chakra-ui/button";
 import { VStack, Text } from "@chakra-ui/layout";
+import { Props } from "../../../models";
 
-const Todo = () => {
+interface FormData {
+  title: string;
+  text: string;
+  status: string;
+}
+
+const Todo: VFC<Props> = () => {
   const { getTodo, changeTodo } = useContext(TodosContext);
 
   const [msg, setMsg] = useState("");
   const router = useRouter();
   const todoId = router.query.todo;
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset } = useForm<FormData>();
 
-  const changeData = async (data) => {
+  const changeData = async (data: FormData) => {
     await changeTodo(data, todoId);
     setMsg("変更しました");
   };

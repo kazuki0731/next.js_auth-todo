@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "contexts/authProvider.tsx", "components/header.tsx", "components/pageLink.tsx", "contexts/todosProvider.tsx", "pages/mypage.tsx", "pages/_app.tsx", "pages/todos/index.tsx", "pages/todos/create.tsx", "pages/todos/[id].tsx", "pages/todos/[id]/edit.tsx", "pages/index.tsx", "pages/signin.tsx", "pages/signup.tsx"],
+  "exclude": ["node_modules"]
+}

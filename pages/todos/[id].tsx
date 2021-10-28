@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, VFC } from "react";
 import Head from "next/head";
 import Header from "../../components/header";
 import { useRouter } from "next/router";
@@ -9,14 +9,28 @@ import { ListItem, UnorderedList, Text, HStack, Box } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/button";
 import PageLink from "../../components/pageLink";
 
-const Todo = () => {
+interface StateData {
+  id: string;
+  title: string;
+  text: string;
+  status: string;
+}
+
+const initState = {
+  id: "",
+  title: "",
+  text: "",
+  status: "",
+};
+
+const Todo: VFC = () => {
   const { getTodo, deleteTodo } = useContext(TodosContext);
   const [msg, setMsg] = useState("");
-  const [data, setData] = useState({});
+  const [data, setData] = useState<StateData>(initState);
   const router = useRouter();
   const todoId = router.query.todo;
 
-  const clickDelete = (id) => {
+  const clickDelete = (id: string) => {
     deleteTodo(id);
     setMsg("削除しました");
   };
@@ -38,7 +52,7 @@ const Todo = () => {
       <TitleText>詳細</TitleText>
 
       {msg ? (
-        <p>{msg}</p>
+        <Text>{msg}</Text>
       ) : (
         <TodosContainer>
           <UnorderedList m={0} listStyleType="none">

@@ -1,13 +1,14 @@
 import { Button } from "@chakra-ui/button";
 import { ListItem, UnorderedList } from "@chakra-ui/layout";
 import { useRouter } from "next/router";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, VFC } from "react";
 import { AuthContext } from "../contexts/authProvider";
 import Header from "../components/header";
 import TitleText from "../components/titleText";
 import TodosContainer from "../components/todosContainer";
+import { Props } from "../models";
 
-const Mypage = () => {
+const Mypage: VFC<Props> = () => {
   const [isLogin, setIsLogin] = useState(false);
   const { currentUser, isGetAuth } = useContext(AuthContext);
   const router = useRouter();
@@ -25,7 +26,7 @@ const Mypage = () => {
   return (
     <>
       <Header />
-      {isLogin && currentUser && (
+      {isLogin && (
         <>
           <TitleText>マイページ</TitleText>
           <TodosContainer>

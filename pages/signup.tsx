@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, VFC } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../contexts/authProvider";
 import TitleText from "../components/titleText";
@@ -6,18 +6,25 @@ import TodosContainer from "../components/todosContainer";
 import { Input, FormControl, FormLabel, Button } from "@chakra-ui/react";
 import { VStack, Text, Box } from "@chakra-ui/layout";
 import PageLink from "../components/pageLink";
+import { Props } from "../models";
 
-const Signup = () => {
+interface FormData {
+  email: string;
+  password: string;
+  name: string;
+}
+
+const Signup: VFC<Props> = () => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormData>();
   const { signup } = useContext(AuthContext);
   const [msg, setMsg] = useState("");
 
-  const submitData = async (data) => {
+  const submitData = async (data: FormData) => {
     const error = await signup(data.email, data.password, data.name);
     if (error) {
       switch (error) {

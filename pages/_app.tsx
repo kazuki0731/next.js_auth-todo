@@ -2,8 +2,9 @@ import { ChakraProvider } from "@chakra-ui/react";
 import AuthProvider from "../contexts/authProvider";
 import TodosProvider from "../contexts/todosProvider";
 import { theme } from "../styles/theme";
+import { AppProps } from "next/app";
 
-function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
     <ChakraProvider theme={theme}>
       <AuthProvider>
@@ -13,6 +14,6 @@ function MyApp({ Component, pageProps }) {
       </AuthProvider>
     </ChakraProvider>
   );
-}
+};
 
 export default MyApp;

@@ -1,10 +1,10 @@
 import { Box, Flex, Button, Text } from "@chakra-ui/react";
-import { useContext } from "react";
+import React, { useContext, VFC } from "react";
 import { AuthContext } from "../contexts/authProvider";
 import { TodosContext } from "../contexts/todosProvider";
 import PageLink from "./pageLink";
 
-const Header = ({ children }) => {
+const Header: VFC = () => {
   const { currentUser, signout } = useContext(AuthContext);
   const { setTodos } = useContext(TodosContext);
 
@@ -14,7 +14,7 @@ const Header = ({ children }) => {
   };
 
   return (
-    <div>
+    <>
       <Box bg="tomato" p={1}>
         <Flex justify="space-between" alignItems="center" w="95%" m="0 auto">
           <Box>
@@ -26,7 +26,6 @@ const Header = ({ children }) => {
             </PageLink>
             <PageLink href="/mypage">マイページ</PageLink>
           </Box>
-          {children}
           {currentUser && (
             <Box>
               <Text fontWeight="semibold" display="inline" mr={6}>
@@ -39,7 +38,7 @@ const Header = ({ children }) => {
           )}
         </Flex>
       </Box>
-    </div>
+    </>
   );
 };
 

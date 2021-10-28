@@ -9,12 +9,24 @@ import {
   updateDoc,
   deleteDoc,
 } from "@firebase/firestore";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState, VFC } from "react";
+import { Props } from "../models";
 import { db } from "../src/firebase";
 
-export const TodosContext = createContext();
+interface AddData {
+  title: string;
+  text: string;
+}
 
-const TodosProvider = ({ children }) => {
+interface ChangeData {
+  title: string;
+  text: string;
+  status: string;
+}
+
+export const TodosContext = createContext(null);
+
+const TodosProvider: VFC<Props> = ({ children }) => {
   const [todos, setTodos] = useState([]);
   const getAllTodos = async () => {
     const data = [];
@@ -35,7 +47,7 @@ const TodosProvider = ({ children }) => {
     }
   };
 
-  const addTodos = async (data) => {
+  const addTodos = async (data: AddData) => {
     await addDoc(collection(db, "todos"), {
       title: data.title,
       text: data.text,
@@ -45,7 +57,7 @@ const TodosProvider = ({ children }) => {
     getAllTodos();
   };
 
-  const getTodo = async (id) => {
+  const getTodo = async (id: string) => {
     const docSnap = await getDoc(doc(db, "todos", id));
 
     return {
@@ -54,7 +66,8 @@ const TodosProvider = ({ children }) => {
     };
   };
 
-  const changeTodo = async ({ title, text, status }, id) => {
+  const changeTodo = async (data: ChangeData, id: string) => {
+    const { title, text, status } = data;
     await updateDoc(doc(db, "todos", id), {
       title,
       text,
@@ -63,7 +76,7 @@ const TodosProvider = ({ children }) => {
     getAllTodos();
   };
 
-  const deleteTodo = async (id) => {
+  const deleteTodo = async (id: string) => {
     await deleteDoc(doc(db, "todos", id));
     getAllTodos();
   };
